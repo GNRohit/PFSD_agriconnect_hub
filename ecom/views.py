@@ -326,6 +326,8 @@ def remove_from_cart_view(request,pk):
             response.delete_cookie('product_ids')
         response.set_cookie('product_ids',value)
         return response
+def add_cart(request,pk):
+    return render(request,'ecom/aboutus.html')
 
 
 def send_feedback_view(request):

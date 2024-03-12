@@ -2,7 +2,6 @@
 {% load static %}
 {% block content %}
 
-
 <head>
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
@@ -61,6 +60,34 @@
 
 </style>
 
+<script>
+  var unitValue = 1;
+$(document).ready(function(){
+    $(".increment").click(function(){
+        var unitElement = $(this).closest("tr").find(".unit");
+        var unitValue = parseInt(unitElement.text());
+        if(unitValue < 10) {
+            unitElement.text(unitValue + 1);
+        }else{
+            unitElement.text("Out of Stock");
+        }
+    });
+
+    $(".decrement").click(function(){
+        var unitElement = $(this).closest("tr").find(".unit");
+        var unitValue = parseInt(unitElement.text());
+        if(unitValue > 0) {
+            unitElement.text(unitValue - 1);
+        }else if(unitValue === "Out of Stock"){
+            unitElement.text(10);
+        }
+        else{
+            unitElement.text(0);
+        }
+    });
+});
+</script>
+
 </head>
 
 <br><br><br><br>
@@ -78,22 +105,27 @@
           <th>Price</th>
           <th>Description</th>
           <th>Action</th>
-
+          <th>Unit</th>
         </tr>
       </thead>
       {% for p in products %}
-  {% if p %}
-
+      {% if p %}
       <tr>
-        <td> {{p.name}}</td>
-        <td> <img src="{{p.product_image.url}}" alt="product_image" height="50px" width="50px" /></td>
-        <td>₹{{p.price}}</td>
-        <td>{{p.description}}</td>
-
-        <td><a class="btn btn-danger btn-xs" href="{% url 'remove-from-cart' p.id  %}"><span class="glyphicon glyphicon-trash"></span></a></td>
-
+        <td>{{ p.name }}</td>
+        <td><img src="{{ p.product_image.url }}" alt="product_image" height="50px" width="50px" /></td>
+        <td>₹{{ p.price }}</td>
+        <td>{{ p.description }}</td>
+        <td>
+          <a class="btn btn-success btn-xs increment">
+            <span class="glyphicon glyphicon-plus"></span>
+          </a>
+          <a class="btn btn-danger btn-xs decrement">
+            <span class="glyphicon glyphicon-minus"></span>
+          </a>
+        </td>
+        <td class="unit">1{{ p.unit }}</td>
       </tr>
-      {%else%}
+      {% else %}
       <br><br><br>
       <h1>no products</h1>
       {% endif %}
@@ -103,10 +135,12 @@
 </div>
 <br><br><br>
 <div style="text-align: center;">
-  <button class="btn btn-danger btn-lg">Total ₹{{total}}</button>
-  <a href="/customer-address"><button class="btn btn-success btn-lg" ><span>Purchase </span></button></a>
+  <a href="/customer-address">
+    <button class="btn btn-success btn-lg">
+      <span>Purchase</span>
+    </button>
+  </a>
 </div>
-
 
 <br><br><br><br><br>
 

@@ -8,7 +8,7 @@
   }
   .landing-page-landing-page {
     gap: -719px;
-    width: 100%;
+    width: auto;
     height: auto;
     display: flex;
     overflow: hidden;
@@ -73,6 +73,7 @@
     text-decoration: none;
   }
   .landing-page-navbar {
+    color: black;
     width: 1440px;
     height: 109px;
     display: flex;
@@ -310,7 +311,7 @@
     position: absolute;
   }
   .landing-page-text14 {
-    color: var(--dl-color-grengrayscale-900);
+    color: black;
     height: auto;
     font-size: 32px;
     font-style: Medium;
@@ -364,20 +365,21 @@
   }
   .landing-page-text18 {
     color: white;
-    width: 547px;
+    display: inline-block;
+    width: 700px;
     height: auto;
     font-size: 86px;
     font-style: SemiBold;
     text-align: left;
     font-family: Dosis;
     font-weight: 600;
-    line-height: 118.4000015258789%;
+    line-height: 118.4000015258789px;
     font-stretch: normal;
     text-decoration: none;
   }
   .landing-page-text20 {
     color: white;
-    width: 547px;
+    width: 700px;
     height: auto;
     font-size: 16px;
     font-style: Medium;
